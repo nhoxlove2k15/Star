@@ -4,6 +4,17 @@
 #include<conio.h>
 #pragma comment (lib, "winmm.lib")
 using namespace std;
+int WindowWidth = 120;
+int WindowHeight = 40;
+char ch = char(3);
+void hidecursor()
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = FALSE;
+	SetConsoleCursorInfo(consoleHandle, &info);
+}
 void resizeConsole(int width, int height)
 {
 	HWND console = GetConsoleWindow();
@@ -45,6 +56,16 @@ void gotoxy(int x, int y)
 // nói cách khác là biến count dùng để hiển thị màu chậm đi .
 // nếu ko có thì nó sẽ hiện rất nhanh .
 int countt = 0 ;
+void ShowConsoleCursor(bool showFlag)
+{
+	HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	CONSOLE_CURSOR_INFO     cursorInfo;
+
+	GetConsoleCursorInfo(out, &cursorInfo);
+	cursorInfo.bVisible = showFlag; // set the cursor visibility
+	SetConsoleCursorInfo(out, &cursorInfo);
+}
 // hàm in đầy đủ 4 ngôi sao 
 void Show_Small_Start(char SmallStar1[15][30] , int a , int b) {
 	//clrscr();
@@ -519,38 +540,39 @@ void Show_Star4(char SmallStar1[15][25], char BigStar[37][48])
 		y++;
 	}
 }
-void Show_ABC() {
-	int x = 0, y, a = 35, b = 5;
+void Show_Quote() {
+	int x = 0, y, a = WindowWidth / 2 + 15, b = 5;
 	int max_x = 90;
-	int max_y = 15;
+	int max_y = 10;
 	char ch = char(3);
 	textcolor(10);
 	// in chữ ở trên ngôi sao to ( bước cuối ).
 	while (KT1 == true)
 	{
 
-		a = 35; b = 5; // reset gia tri a , b 
-		string temp = "Now only a big star stay with the sky";
+		a = WindowWidth / 3-10; b = 4; // reset gia tri a , b 
+		string temp = "Suddenly the big star has come and warm the sky";
 		for (int i = 0; i < temp.size(); i++)
 		{
 			gotoxy(a, b);
 			cout << temp[i];
-			Sleep(50);
+			Sleep(75);
 			a++;
 		}
-		a = 10;
-		temp = " JustLike I always stay with you whenever you're up and down";
+		a = WindowWidth / 3  - 10;
+		temp = " JustLike U come and drag me from the darkness ";
 		for (int i = 0; i < temp.size(); i++)
 		{
 			gotoxy(a, b + 1);
 			cout << temp[i];
-			Sleep(50);
+			Sleep(75);
 			a++;
 		}
 		KT1 = false;
 
 	}
-	textcolor(13);
+	Sleep(1000);
+	textcolor(11);
 	while (k1 == 0)
 	{
 		// x = 20->90 ,  y = 0->18 ,
@@ -561,18 +583,18 @@ void Show_ABC() {
 
 			cout << ch;
 			y++;
-			Sleep(100);
+			Sleep(150);
 		}
 		y = max_y;
-		gotoxy(0, y+1);
-		cout << "???Where am I ?";
+		gotoxy(5, y+1);
+		cout << " ? Left or Right ?";
 		Sleep(3000);
-		gotoxy(0, y+1);
+		gotoxy(5, y+1);
 		cout << "                   ";
-		gotoxy(0, y+1);
-		cout << "Ok!I Found The Way.";
+		gotoxy(5, y+1);
+		cout << "Ok ! Left";
 		Sleep(2000);
-		gotoxy(0, y);
+		gotoxy(5, y + 1);
 		cout << "                    ";
 		while (x <= max_x)
 		{
@@ -580,26 +602,33 @@ void Show_ABC() {
 
 			cout << ch;
 			x+=2;
-			Sleep(100);
+			Sleep(150);
 
 		}
 		x = max_x;
-		gotoxy(50, 19);
-		cout << "Dafuq ! I Lost again";
+		gotoxy(60, 14);
+		cout << "Dkm ! I get lost again";
 		Sleep(2000);
-		gotoxy(50, 19);
-		cout << "                    ";
-		gotoxy(50, 19);
-		cout << "Ok!";
+		gotoxy(60, 14);
+		cout << "                               ";
+		gotoxy(65, 13);
+		cout << "Which way can I get to your heart ^^ ? ";
+		Sleep(3000);
+		gotoxy(65, 13);
+		cout << "                                          ";
+	
+		
+		/*
+		cout << "OK ! I have found the way ";
 		Sleep(2000);
-		gotoxy(50, 19);
-		cout << "                    ";
+		gotoxy(60, 14);
+		cout << "                                          "; */
 		while (y >= 0)
 		{
 			gotoxy(x, y);
 			cout << ch;
 			y--;
-			Sleep(100);
+			Sleep(150);
 		}
 		y = 0;
 
@@ -608,19 +637,23 @@ void Show_ABC() {
 			gotoxy(x, y);
 			cout << ch;
 			x-= 2;
-			Sleep(100);
+			Sleep(150);
 
 		}
-		gotoxy(0, 0);
+		gotoxy(5, 0);
 		cout << "I'm Done";
 		Sleep(2000);
-		gotoxy(0, 1);
+		Sleep(1000);
+		gotoxy(5, 0);
+		cout << "Dy is out";
+		Sleep(2000);
+		gotoxy(7, 1);
 		cout << "Bye";
 		Sleep(2000);
 		// chi xoa 2 lan thoi 
 		for (int i = 0; i < 2; i++)
 		{
-			gotoxy(0, i);
+			gotoxy(5, i);
 			cout << "           ";
 		}
 
@@ -694,11 +727,12 @@ void ShowNumber1()
 	t = rand() % 15 + 1;
 	textcolor(t);
 	int y;
-	y = 15;
+	y = WindowHeight / 2 ;
+	int x = WindowWidth / 3 + 5;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << five[i];
 		y++;
 	}
@@ -707,10 +741,10 @@ void ShowNumber1()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2;
 	for (int i = 0; i < 9; i++)
 	{
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << four[i];
 		y++;
 	}
@@ -718,11 +752,11 @@ void ShowNumber1()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << three[i];
 		y++;
 	}
@@ -730,11 +764,11 @@ void ShowNumber1()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << two[i];
 		y++;
 	}
@@ -742,11 +776,11 @@ void ShowNumber1()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << one[i];
 		y++;
 	}
@@ -754,7 +788,11 @@ void ShowNumber1()
 
 }
 void ShowNumber2()
-{
+{	
+	textcolor(10);
+	gotoxy(WindowWidth / 3, WindowHeight / 2);
+	cout << "Let count on 10 seconds";
+	Sleep(1000); 
 	clrscr();
 
 	char six[9][15] = {
@@ -821,11 +859,12 @@ void ShowNumber2()
 	t = rand() % 15 + 1;
 	textcolor(t);
 	int y;
-	y = 15;
+	y = WindowHeight / 2  ;
+	int x = WindowWidth / 3 + 5;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(30, y);
+		gotoxy(x, y  );
 		cout << ten[i];
 		y++;
 	}
@@ -834,10 +873,10 @@ void ShowNumber2()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2;
 	for (int i = 0; i < 9; i++)
 	{
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << nine[i];
 		y++;
 	}
@@ -845,11 +884,11 @@ void ShowNumber2()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2 ;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << eight[i];
 		y++;
 	}
@@ -857,11 +896,11 @@ void ShowNumber2()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << seven[i];
 		y++;
 	}
@@ -869,11 +908,11 @@ void ShowNumber2()
 	clrscr();
 	t = rand() % 15 + 1;
 	textcolor(t);
-	y = 15;
+	y = WindowHeight / 2 ;
 	for (int i = 0; i < 9; i++)
 	{
 
-		gotoxy(35, y);
+		gotoxy(x, y);
 		cout << six[i];
 		y++;
 	}
@@ -889,75 +928,105 @@ void Show_Big_Star(char BigStar[37][48], int x, int y) {
 
 	for (int i = 0; i < 37; i++)
 	{
+		ShowCursor(false);
 		gotoxy(x, y);
 		cout << BigStar[i];
 		y++;
+		Sleep(1);
+		//Sleep(1);
 	}
-	if (count3 != 1)
-	{
-		Sleep(500);
-	}
+		
 
 
 }
 int height = 20;
 int width = 100;
 void Show_Run() {
-	int a = 0 , b = 0;
+	int a = WindowWidth / 4 - 10 , b = 0;
+	int t;
+
+	gotoxy(WindowWidth / 4 + 24 , WindowHeight / 4); // 50 , 2
+	textcolor(15);
+	cout << "Welcome to the Show !!! ";
 	while (!_kbhit())
 	{
-		if (b < (height / 4))
+		if (b < (WindowHeight / 2))
 		{
 			gotoxy(a, b);
-			textcolor(11);
-			cout << "*****";
+			t = rand() % 15 + 1;
+			textcolor(t);
+			cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
+			//cout << "***************";
 			Sleep(100);
 			gotoxy(a, b);
-			cout << "     "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
+			cout << "                        "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
 			b++;
 		}
-		else if (b == (height / 4))
+		else if (b == (WindowHeight / 2))
 		{
 			while (b > 0)
 			{
-				gotoxy(68, b);
-				textcolor(14);
-				cout << "#####";
+				t = rand() % 15 + 1;
+				gotoxy(WindowWidth - 20, b);
+				textcolor(t);
+				cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
 				Sleep(100);
-				gotoxy(68, b);
-				cout << "     "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
+				gotoxy(WindowWidth - 20, b);
+				cout << "                          "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
 				b--;
 			}
 		}
 	}
-	Sleep(1000);
-	textcolor(13);
-	gotoxy((width / 4), 2);
+	clrscr();
+	// Sleep(1000);
 
-	cout << "Chao Mung Ban Den Voi Snake Game!!! ";
 }
+void Show_Run2() {
+	int a = WindowWidth / 4 - 10, b = 0;
+	int t;
 
+	gotoxy(WindowWidth / 4 + 18, WindowHeight / 4); // 50 , 2
+	textcolor(15);
+	cout << "This is end ! But music does not end ^^  ";
+	while (!_kbhit())
+	{
+		if (b < (WindowHeight / 2))
+		{
+			gotoxy(a, b);
+			t = rand() % 15 + 1;
+			textcolor(t);
+			cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
+			//cout << "***************";
+			Sleep(100);
+			gotoxy(a, b);
+			cout << "                        "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
+			b++;
+		}
+		else if (b == (WindowHeight / 2))
+		{
+			while (b > 0)
+			{
+				t = rand() % 15 + 1;
+				gotoxy(WindowWidth - 20, b);
+				textcolor(t);
+				cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
+				Sleep(100);
+				gotoxy(WindowWidth - 20, b);
+				cout << "                          "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
+				b--;
+			}
+		}
+	}
+	clrscr();
+	// Sleep(1000);
+
+}
+void ShowString_third();
+void End();
 // hàm tổng hợp các hàm in sao 
 void ShowStar()
 {
-	/*
-	char SmallStar[15][25] = {
-		"         *            ",
-		"                      ",
-		"        *  *          ",
-		"                      ",
-		"       *    *         ",
-		"                      ",
-		"* * * *  * *  * * * *  ",
-		"                      ",
-		"  *  *        *  *     ",
-		"                        ",
-		"   *      *     *      ",
-		"                      ",
-		"  *   *       *   *   ",
-		"                      ",
-		"*                   * "
-	};*/
+
 	char SmallStar[15][30] = {
 		"         *            ",
 		"                      ",
@@ -975,23 +1044,7 @@ void ShowStar()
 		"                      ",
 		"*                   * "
 	};
-	/*char SmallStar[15][30] = {
-		"         *            ",
-		"                      ",
-		"       *   *          ",
-		"                      ",
-		"     *        *         ",
-		"                      ",
-		"* * * *  * *  * * * *  ",
-		"                      ",
-		"*  *            *  *     ",
-		"                        ",
-		"   *      *     *      ",
-		"                      ",
-		"  *   *       *   *   *",
-		"                      ",
-		"*                   * "
-	};*/
+
 
 
 	char BigStar[37][48] = {
@@ -1040,27 +1093,120 @@ void ShowStar()
 	cin.ignore();
 	Show_Star3(SmallStar, BigStar);
 	cin.ignore();*/
-	
+	_getch();
 	while (!_kbhit()) {
 		Show_Small_Start(SmallStar, 1, 1);
 		Show_Small_Start(SmallStar, 1, 17);
 		Show_Small_Start(SmallStar, 1, 34);
-		Sleep(1000);
+		Sleep(750);
 
 		
 	}
-	 Sleep(2000);
-	clrscr();
+	 Sleep(1000);
+	 ShowString_third();
+	 clrscr();
+	_getch();
+	Show_Quote();
+	while (!_kbhit()) {
+		
+		
+		Show_Big_Star(BigStar, 35, 12);
+	}
+	
+	End();
 	_getch();
 	while (!_kbhit()) {
-		Show_ABC();
-		Show_Big_Star(BigStar, 35, 20);
+		Show_Run2();
 	}
-	clrscr();
-	cout << "hello world";
+	
 	// while (!_kbhit()) { Show_Star4(SmallStar, BigStar); }
 }
+void End() {
+	clrscr();
+	char string[12][500] = {
+"_____*yeu*_*yeu*________*yeu*_*yeu*",
+"___*yeu*______*yeu*_*yeu*_______*yeu*",
+"__*yeu*__________*yeu*__________*yeu*",
+"__*yeu*________________________*yeu*",
+"___*yeu*________**Song**________*yeu*",
+"____*yeu*____In Love - July____*yeu*",
+"______*yeu*________________*yeu*",
+"________*yeu*____________*yeu*",
+"__________*yeu*________*yeu*",
+"____________*yeu*____*yeu*",
+"______________*yeu**yeu*",
+">>>>>>>>>>>>>>>> *yeu* >>>>>>>>>>>>>>>> Thanks for watching" };
+	int x = WindowWidth / 3;
+	int y = WindowHeight / 3;
+	for (int i = 0; i < 12; i++) {
+		gotoxy(x, y);
+		int t = rand() % 15 + 1;
+		textcolor(t);
+		cout << string[i] << endl;
+		y++;
+		Sleep(1000);
 
+
+	}
+	int len = 12;
+	x = WindowWidth / 3;
+	int z = y;
+	textcolor(10);
+	while (y > 0) {
+		clrscr();
+		for (int i = 11; i >= 0; i--) {
+
+			gotoxy(x, y - 1);
+			if (y - 1 <= 0) {
+				cout << "                                                                                                    " << endl;
+			} else cout << string[i] << endl;
+			y--;
+
+		}
+		y = y + 11;
+		Sleep(500);
+	}
+}
+	
+
+
+	
+
+
+void ShowString_third() {
+	clrscr();
+	/////////////////////
+	gotoxy(WindowWidth / 3, WindowHeight / 2);
+	textcolor(13);
+	string a = "There are many stars in the sky";
+	for (int i = 0; i < a.size(); i++)
+	{
+		cout << a[i];
+		Sleep(200);
+	}
+	textcolor(15);
+	gotoxy(WindowWidth / 3 + 3, WindowHeight / 2 + 1);
+	a = "But they left me alone";
+	for (int i = 0; i < a.size(); i++)
+	{
+		cout << a[i];
+		Sleep(200);
+	}
+	Sleep(2000);
+	gotoxy(WindowWidth / 3, WindowHeight / 2);
+	cout << "                                                   ";
+	gotoxy(WindowWidth / 3, WindowHeight / 2 + 1 );
+	cout << "                                                   ";
+	textcolor(12);
+	gotoxy(WindowWidth / 3 + 3, WindowHeight / 2 );
+	a = "Now I feel empty and cold ";
+	for (int i = 0; i < a.size(); i++)
+	{
+		cout << a[i];
+		Sleep(100);
+	}
+	Sleep(2000);
+}
 
 bool Over = true;
 /*void Show()
@@ -1080,65 +1226,67 @@ bool Over = true;
 }*/
 void Author()
 {
-	textcolor(9);
+	textcolor(11);
 	// muc tieu xoa : x = 30 , y = 15 ;
-	int x = 25, y = 5;
-	gotoxy(25, 3);
-	cout << "Hello ! I'm Author. My Job is clean characters";
-	while (x > 10)
+	int x = WindowWidth/3 - 5, y = WindowHeight / 2 - 5;
+	int timee = 75; 
+	gotoxy(x, y-2);
+	cout << "Hello ! I'm Dy Dy. My Job is to make U happy";
+	gotoxy(WindowWidth / 3 - 15, WindowHeight / 2 + 1);
+	while (x > WindowWidth / 6)
 	{
 		gotoxy(x, y);
-		cout << " * ";
+		cout << " " << ch << " ";
 		x--;
-		Sleep(100);
+		Sleep(timee);
 	}
-	while (y < 15)
+	while (y < WindowHeight / 2 )
 	{
 		gotoxy(x, y);
-		cout << " * ";
-		Sleep(100);
+		cout << " " << ch << " ";
+		Sleep(timee);
 		gotoxy(x, y);
 		cout << "   ";
 		y++;
 
 	}
-	while (x < 50)
+	while (x < WindowWidth - 30)
 	{
 		gotoxy(x, y);
-		cout << " *";
+		cout << " " << ch << " ";
 		x++;
-		Sleep(100);
+		Sleep(timee);
 	}
 	gotoxy(x, y);
 	cout << "   ";
 	y = y + 1; // y = 16 .
 	gotoxy(x, y);
-	cout << " * ";
+	cout << " " << ch << " ";
 	gotoxy(x, y);
 	cout << "   ";
 
 	while (x >= 10)
 	{
 		gotoxy(x, y);
-		cout << "* ";
+		cout << " " << ch << " ";
 		x--;
-		Sleep(100);
+		Sleep(timee);
 	}
 
 }
 void ShowString_frist()
 {
 	/////////////////////
-	gotoxy(30, 15);
-	textcolor(3);
-	string a = "September 15th , 2019";
+	gotoxy(WindowWidth/3 , WindowHeight/2);
+	textcolor(13);
+	string a = "June 28th , 2021";
 	for (int i = 0; i < a.size(); i++)
 	{
 		cout << a[i];
 		Sleep(100);
 	}
-	gotoxy(33, 16);
-	a = "Dear My Friend!";
+	gotoxy(WindowWidth / 3 - 15 , WindowHeight / 2 + 1 );
+	a = "Hi Quynh Anh ! The girl with cuteness and her beautiful name";
 	for (int i = 0; i < a.size(); i++)
 	{
 		cout << a[i];
@@ -1149,40 +1297,46 @@ void ShowString_frist()
 	clrscr();
 	Sleep(1000);
 	////////////////////////////
-	gotoxy(30, 15);
-	textcolor(5);
-	cout << "Let play music";
+	gotoxy(WindowWidth / 3, WindowHeight / 2 );
+	textcolor(13);
+	cout << "Let music begin";
 	Sleep(2000);
-	//PlaySound("Mario_Game_Over.wav", NULL, SND_ASYNC);
+	
+
+
+	//mciSendString("play mp3", NULL, 0, NULL);
+	PlaySound("Mario_Game_Over.wav", NULL, SND_ASYNC);
 	/////////////////////////////
 	clrscr();
-	gotoxy(30, 15);
-	textcolor(4);
-	a = " Wrong music,My fauft!";
+	gotoxy(WindowWidth / 3, WindowHeight / 2);
+	textcolor(10);
+	Sleep(500);
+	a = "Not Mario . Wrong sound , My fauft!";
 	cout << a;
 	Sleep(2000);
 	/////////////////////////////
-	gotoxy(30, 16);
-	textcolor(4);
-	a = "    Now try again ! ";
+	gotoxy(WindowWidth / 3 + 7, WindowHeight / 2 + 1);
+	textcolor(14);
+	a = " Now try again ! ";
 	for (int i = 0; i < a.size(); i++)
 	{
 		cout << a[i];
 		Sleep(200);
 	}
 	Sleep(2000);
-	//PlaySound("Romeo-And-Juliet.wav", NULL, SND_ASYNC);
+	PlaySound("InLove.wav", NULL, SND_ASYNC);
 
 	//////////////////////////////
 	clrscr();
-	gotoxy(30, 15);
-	textcolor(4);
-	a = "Perfect!";
+	gotoxy(WindowWidth / 3, WindowHeight / 2 + 1);
+	Sleep(1500);
+	textcolor(10);
+	a = "Perfect !";
 	cout << a;
 	Sleep(2000);
 	///////////////////////
-	gotoxy(30, 15);
-	textcolor(4);
+	gotoxy(WindowWidth / 3, WindowHeight / 2 + 1);
+	textcolor(13);
 	a = "Now I have a surprise for U";
 	for (int i = 0; i < a.size(); i++)
 	{
@@ -1192,9 +1346,9 @@ void ShowString_frist()
 	clrscr();
 	Sleep(2000);
 	////////////////////////////
-	gotoxy(30, 15);
+	/*gotoxy(WindowWidth / 3, WindowHeight / 2 + 1);
 	cout << "Let count on 10 seconds";
-	Sleep(2000);
+	Sleep(2000);*/
 
 	/////////////////////////
 }
@@ -1202,9 +1356,9 @@ void Author2()
 {
 	clrscr();
 	textcolor(11);
-	int x = 30, y = 15;
-	gotoxy(15, 20);
-	cout << " * ";
+	int x = WindowWidth / 4 + 10, y = WindowHeight/2 - 5 ;
+	gotoxy(x  - 15 , y + 3 );
+	cout << " " << ch << " ";
 
 	gotoxy(x, y);
 	cout << "   nani ???   ";
@@ -1223,85 +1377,106 @@ void Author2()
 	gotoxy(x - 2, y + 1);
 	cout << "I'm getting out of here ";
 	// xoa toa do dau` tien .
-	gotoxy(15, 20);
+	gotoxy(x - 15, y + 3);
 	cout << "   ";
-	x = x - 5;
-	y = y + 5;
-	while (x < 50)
+	int a = x - 5;
+	int b = y + 5;
+	while (a < 50)
 	{
-		gotoxy(x, y);
-		cout << " * ";
-		x++;
+		gotoxy(a,b);
+		cout << " " << ch << " ";
+		a++;
 		Sleep(100);
 	}
-	while (y < 25)
+	while (b < 25)
 	{
-		gotoxy(x, y);
-		cout << " * ";
+		gotoxy(a, b);
+		cout << " " << ch << " ";
 		Sleep(100);
-		gotoxy(x, y);
+		gotoxy(a,b);
 		cout << "   ";
-		y++;
+		b++;
 	}
 
-	while (x < 70)
+	while (a < WindowWidth)
 	{
-		gotoxy(x, y);
-		cout << " * ";
-		x++;
-		Sleep(100);
+		gotoxy(a, b);
+		cout << " " << ch << " ";
+		a++;
+		Sleep(50);
 	}
 
 	clrscr();
 
-	gotoxy(30, 15);
-	cout << " I'll be back ";
+	gotoxy(x, y);
+	cout << " Dy Dy will be back ";
 	Sleep(1500);
 }
 void ShowString_second()
 {
+	
 	clrscr();
-	gotoxy(30, 15);
-	textcolor(8);
-	string a = "Be ready!Close your eyes in 3 seconds";
+	int y = WindowHeight / 2;
+	gotoxy(WindowWidth / 4 + 15 , y );
+	textcolor(13);
+	string a = "Be ready ! Close your eyes in 3 seconds";
 	for (int i = 0; i < a.size(); i++)
 	{
 		cout << a[i];
-		Sleep(200);
+		Sleep(100);
 	}
+	Sleep(3000);
 	clrscr();
-	Sleep(2000);
+	
+	ShowCursor(false);
 	////////////////
 
 	//////////////////////
-	gotoxy(30, 15);
-	textcolor(5);
+	// gotoxy(30, 15);
+	textcolor(14);
 	a = "Now open";
-	for (int i = 0; i < a.size(); i++)
+	int temp = WindowWidth;
+	while (temp > WindowWidth / 4 + 25)
 	{
-		cout << a[i];
-		Sleep(200);
+		gotoxy(temp, y);
+		cout << a;
+		Sleep(75);
+		gotoxy(temp, y);
+		cout << "          ";
+		temp--;
+
 	}
+	Sleep(1000);
 	clrscr();
-	Sleep(2000);
+	
 }
 int main()
 {
+	//hidecursor();
 
-	resizeConsole(1200, 1000);
-	//	Show();
-	ShowString_frist();
+
+	// ...
+	ShowConsoleCursor(false);
+	//resizeConsole(1143, 985);
 	
-	//Author2();
+	while(!_kbhit()){}
+	_getch();
+	 ShowString_frist();
 	
-	//ShowString_second();
-		//ShowNumber2();
+	Show_Run();
+		
+		ShowNumber2();
 		ShowNumber1();
-		   Show_Run();
-		   Author2();
-	// Show_ABC();
-		   _getch();
+		Author2();
+		ShowString_second(); 
+		
+		
+	
+		 
+	
 	ShowStar();
+	
+	//Show_Run2();
 	
 	textcolor(7);
 	cout << endl;
