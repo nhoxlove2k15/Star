@@ -7,6 +7,123 @@ using namespace std;
 int WindowWidth = 120;
 int WindowHeight = 40;
 char ch = char(3);
+char six[9][15] = {
+		"666666666666",
+		"66          ",
+		"66          ",
+		"66          " ,
+		"666666666666",
+		"66        66",
+		"66        66",
+		"66        66",
+		"666666666666",
+
+};
+char seven[9][15] = {
+	"777777777777",
+	"777777777777",
+	"          77",
+	"          77",
+	"          77",
+	"          77",
+	"          77",
+	"          77",
+	"          77",
+
+};
+char eight[9][15] = {
+	"888888888888",
+	"88        88",
+	"88        88",
+	"88        88",
+	"888888888888",
+	"88        88",
+	"88        88",
+	"88        88",
+	"888888888888",
+
+};
+char nine[9][15] = {
+	"999999999999",
+	"99        99",
+	"99        99",
+	"99        99",
+	"888888888888",
+	"          99",
+	"          99",
+	"          99",
+	"999999999999",
+
+};
+char ten[9][30] = {
+	"     11    000000000000",
+	"     11    00        00",
+	"     11    00        00",
+	"     11    00        00",
+	"     11    00        00",
+	"     11    00        00",
+	"     11    00        00",
+	"     11    00        00",
+	"     11    000000000000",
+
+};
+
+char five[9][15] = {
+	"555555555555",
+	"55          ",
+	"55          ",
+	"55          " ,
+	"555555555555",
+	"          55",
+	"          55",
+	"          55",
+	"555555555555",
+
+};
+char four[9][15] = {
+	"44        44",
+	"44        44",
+	"44        44",
+	"44        44",
+	"444444444444",
+	"          44",
+	"          44",
+	"          44",
+	"          44",
+};
+char three[9][15] = {
+	"333333333333",
+	"          33",
+	"          33",
+	"          33",
+	"333333333333",
+	"          33",
+	"          33",
+	"          33",
+	"333333333333",
+};
+char two[9][15] = {
+	"222222222222",
+	"          22",
+	"          22",
+	"          22",
+	"222222222222",
+	"22          ",
+	"22          ",
+	"22          ",
+	"222222222222",
+};
+char one[9][15] = {
+	"     11     ",
+	"     11     ",
+	"     11     ",
+	"     11     ",
+	"     11     ",
+	"     11     ",
+	"     11     ",
+	"     11     ",
+	"     11     ",
+};
 void hidecursor()
 {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -663,198 +780,28 @@ void Show_Quote() {
 	}
 }
 // hàm đếm số 1 -> trước khi in ngôi sao 	
-void ShowNumber1()
-{
-	clrscr();
 
-	char five[9][15] = {
-		"555555555555",
-		"55          ",
-		"55          ",
-		"55          " ,
-		"555555555555",
-		"          55",
-		"          55",
-		"          55",
-		"555555555555",
-
-	};
-	char four[9][15] = {
-		"44        44",
-		"44        44",
-		"44        44",
-		"44        44",
-		"444444444444",
-		"          44",
-		"          44",
-		"          44",
-		"          44",
-	};
-	char three[9][15] = {
-		"333333333333",
-		"          33",
-		"          33",
-		"          33",
-		"333333333333",
-		"          33",
-		"          33",
-		"          33",
-		"333333333333",
-	};
-	char two[9][15] = {
-		"222222222222",
-		"          22",
-		"          22",
-		"          22",
-		"222222222222",
-		"22          ",
-		"22          ",
-		"22          ",
-		"222222222222",
-	};
-	char one[9][15] = {
-		"     11     ",
-		"     11     ",
-		"     11     ",
-		"     11     ",
-		"     11     ",
-		"     11     ",
-		"     11     ",
-		"     11     ",
-		"     11     ",
-	};
-	int t;
-	t = rand() % 15 + 1;
-	textcolor(t);
-	int y;
-	y = WindowHeight / 2 ;
-	int x = WindowWidth / 3 + 5;
-	for (int i = 0; i < 9; i++)
-	{
-
-		gotoxy(x, y);
-		cout << five[i];
-		y++;
-	}
-
-	Sleep(1700);
-	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2;
+void ShowNumberConfig(char number[9][15] , int width, int height, int color, int timeMotion) {
+	textcolor(color);
+	int y = WindowHeight / 2;
+	int x = width+ 5;
 	for (int i = 0; i < 9; i++)
 	{
 		gotoxy(x, y);
-		cout << four[i];
+		cout << number[i];
 		y++;
 	}
-	Sleep(1700);
+
+	Sleep(timeMotion);
 	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2;
-	for (int i = 0; i < 9; i++)
-	{
-
-		gotoxy(x, y);
-		cout << three[i];
-		y++;
-	}
-	Sleep(1700);
-	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2;
-	for (int i = 0; i < 9; i++)
-	{
-
-		gotoxy(x, y);
-		cout << two[i];
-		y++;
-	}
-	Sleep(1700);
-	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2;
-	for (int i = 0; i < 9; i++)
-	{
-
-		gotoxy(x, y);
-		cout << one[i];
-		y++;
-	}
-	Sleep(1700);
-
 }
-void ShowNumber2()
+void ShowNumber()
 {	
 	textcolor(10);
 	gotoxy(WindowWidth / 3, WindowHeight / 2);
 	cout << "Let count on 10 seconds";
 	Sleep(1000); 
 	clrscr();
-
-	char six[9][15] = {
-		"666666666666",
-		"66          ",
-		"66          ",
-		"66          " ,
-		"666666666666",
-		"66        66",
-		"66        66",
-		"66        66",
-		"666666666666",
-
-	};
-	char seven[9][15] = {
-		"777777777777",
-		"777777777777",
-		"          77",
-		"          77",
-		"          77",
-		"          77",
-		"          77",
-		"          77",
-		"          77",
-
-	};
-	char eight[9][15] = {
-		"888888888888",
-		"88        88",
-		"88        88",
-		"88        88",
-		"888888888888",
-		"88        88",
-		"88        88",
-		"88        88",
-		"888888888888",
-
-	};
-	char nine[9][15] = {
-		"999999999999",
-		"99        99",
-		"99        99",
-		"99        99",
-		"888888888888",
-		"          99",
-		"          99",
-		"          99",
-		"999999999999",
-
-	};
-	char ten[9][30] = {
-		"     11    000000000000",
-		"     11    00        00",
-		"     11    00        00",
-		"     11    00        00",
-		"     11    00        00",
-		"     11    00        00",
-		"     11    00        00",
-		"     11    00        00",
-		"     11    000000000000",
-
-	};
 	int t;
 	t = rand() % 15 + 1;
 	textcolor(t);
@@ -871,53 +818,28 @@ void ShowNumber2()
 
 	Sleep(1700);
 	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2;
-	for (int i = 0; i < 9; i++)
-	{
-		gotoxy(x, y);
-		cout << nine[i];
-		y++;
-	}
-	Sleep(1700);
-	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2 ;
-	for (int i = 0; i < 9; i++)
-	{
 
-		gotoxy(x, y);
-		cout << eight[i];
-		y++;
-	}
-	Sleep(1700);
-	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2;
-	for (int i = 0; i < 9; i++)
-	{
+	int count = 0;
+	char number[9][15];
+	while (count < 9) {
+		t = rand() % 15 + 1;
+		switch (count)
+		{
+		case 0: ShowNumberConfig(nine, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 1: ShowNumberConfig(eight, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 2: ShowNumberConfig(seven, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 3: ShowNumberConfig(six, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 4: ShowNumberConfig(five, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 5: ShowNumberConfig(four, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 6: ShowNumberConfig(three, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 7: ShowNumberConfig(two, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 8: ShowNumberConfig(one, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		default:
+			break;
+		}
 
-		gotoxy(x, y);
-		cout << seven[i];
-		y++;
+		count++;
 	}
-	Sleep(1700);
-	clrscr();
-	t = rand() % 15 + 1;
-	textcolor(t);
-	y = WindowHeight / 2 ;
-	for (int i = 0; i < 9; i++)
-	{
-
-		gotoxy(x, y);
-		cout << six[i];
-		y++;
-	}
-	Sleep(1700);
-
 
 }
 void Show_Big_Star(char BigStar[37][48], int x, int y) {
@@ -941,13 +863,16 @@ void Show_Big_Star(char BigStar[37][48], int x, int y) {
 }
 int height = 20;
 int width = 100;
-void Show_Run() {
+void Print_Multi_Character(char ch) {
+	cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
+}
+void Show_Run(string tiltle , int colorTitle , int timeMotion) {
 	int a = WindowWidth / 4 - 10 , b = 0;
 	int t;
-
+	textcolor(colorTitle);
 	gotoxy(WindowWidth / 4 + 24 , WindowHeight / 4); // 50 , 2
-	textcolor(15);
-	cout << "Welcome to the Show !!! ";
+
+	cout << tiltle;
 	while (!_kbhit())
 	{
 		if (b < (WindowHeight / 2))
@@ -955,9 +880,9 @@ void Show_Run() {
 			gotoxy(a, b);
 			t = rand() % 15 + 1;
 			textcolor(t);
-			cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
+			Print_Multi_Character(ch);
 			//cout << "***************";
-			Sleep(100);
+			Sleep(timeMotion);
 			gotoxy(a, b);
 			cout << "                        "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
 			b++;
@@ -970,7 +895,7 @@ void Show_Run() {
 				gotoxy(WindowWidth - 20, b);
 				textcolor(t);
 				cout << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch << ch;
-				Sleep(100);
+				Sleep(timeMotion);
 				gotoxy(WindowWidth - 20, b);
 				cout << "                          "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
 				b--;
@@ -1224,14 +1149,16 @@ bool Over = true;
 	cout<<"<<<<<";
 	}
 }*/
-void Author()
+void Author(int sizeContent , int width, int height, int color, int timeMotion)
 {
-	textcolor(11);
+	textcolor(color);
 	// muc tieu xoa : x = 30 , y = 15 ;
-	int x = WindowWidth/3 - 5, y = WindowHeight / 2 - 5;
-	int timee = 75; 
+
+	int x = width, y = height;
+	int timee = timeMotion;
+	string title = "Hello ! I'm Dy Dy. My Job is to make U happy";
 	gotoxy(x, y-2);
-	cout << "Hello ! I'm Dy Dy. My Job is to make U happy";
+	cout << title;
 	gotoxy(WindowWidth / 3 - 15, WindowHeight / 2 + 1);
 	while (x > WindowWidth / 6)
 	{
@@ -1250,7 +1177,7 @@ void Author()
 		y++;
 
 	}
-	while (x < WindowWidth - 30)
+	while (x < width + sizeContent )
 	{
 		gotoxy(x, y);
 		cout << " " << ch << " ";
@@ -1274,108 +1201,81 @@ void Author()
 	}
 
 }
-void ShowString_frist()
+void Print_String_First(string stuff , int width , int height , int color , int timeMotion = 0 , int timeSleep = 0) {
+	gotoxy(width, height);
+	textcolor(color);
+	for (int i = 0; i < stuff.size(); i++)
+	{
+		cout << stuff[i];
+		Sleep(timeMotion);
+	}
+	Sleep(timeSleep);
+}
+void ShowString_frist(string date , string content)
 {
+	string wrongMusic = "Mario_Game_Over.wav";
+	string rightMusic = "InLove.wav";
+	string stuff = "";
 	/////////////////////
-	gotoxy(WindowWidth/3 , WindowHeight/2);
-	textcolor(13);
-	string a = "June 28th , 2021";
-	for (int i = 0; i < a.size(); i++)
-	{
-		cout << a[i];
-		Sleep(100);
-	}
-	gotoxy(WindowWidth / 3 - 15 , WindowHeight / 2 + 1 );
-	a = "Hi Quynh Anh ! The girl with cuteness and her beautiful name";
-	for (int i = 0; i < a.size(); i++)
-	{
-		cout << a[i];
-		Sleep(100);
-	}
-	Author();
-
+	Print_String_First(date , WindowWidth / 3 , WindowHeight / 2 , 13 , 100 , 0 );
+	
+	Print_String_First(content, WindowWidth / 3 - 15, WindowHeight / 2 + 1, 13, 100 , 0);	
+	
+	Author(content.size(), WindowWidth / 3 - 5, WindowHeight / 2 - 5, 11, 75);
 	clrscr();
 	Sleep(1000);
 	////////////////////////////
-	gotoxy(WindowWidth / 3, WindowHeight / 2 );
-	textcolor(13);
-	cout << "Let music begin";
-	Sleep(2000);
-	
+	stuff = "Let music begin"; 
+	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2, 13,0,2000);
 
-
-	//mciSendString("play mp3", NULL, 0, NULL);
-	PlaySound("Mario_Game_Over.wav", NULL, SND_ASYNC);
-	/////////////////////////////
+	PlaySound(wrongMusic.c_str(), NULL, SND_ASYNC);
 	clrscr();
-	gotoxy(WindowWidth / 3, WindowHeight / 2);
-	textcolor(10);
-	Sleep(500);
-	a = "Not Mario . Wrong sound , My fauft!";
-	cout << a;
-	Sleep(2000);
+	
+	stuff = "Not Mario . Wrong sound , My fauft!";
+	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2, 10, 0, 500);
 	/////////////////////////////
-	gotoxy(WindowWidth / 3 + 7, WindowHeight / 2 + 1);
-	textcolor(14);
-	a = " Now try again ! ";
-	for (int i = 0; i < a.size(); i++)
-	{
-		cout << a[i];
-		Sleep(200);
-	}
-	Sleep(2000);
-	PlaySound("InLove.wav", NULL, SND_ASYNC);
+	stuff = " Now try again ! ";
+	Print_String_First(stuff, WindowWidth / 3 + 5 , WindowHeight / 2 + 1, 14, 300, 1500);
+	
+	PlaySound(rightMusic.c_str(), NULL, SND_ASYNC);
 
 	//////////////////////////////
 	clrscr();
-	gotoxy(WindowWidth / 3, WindowHeight / 2 + 1);
-	Sleep(1500);
-	textcolor(10);
-	a = "Perfect !";
-	cout << a;
-	Sleep(2000);
+	stuff = "Perfect!";
+	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2 + 1, 10,  0 , 2000);
 	///////////////////////
-	gotoxy(WindowWidth / 3, WindowHeight / 2 + 1);
-	textcolor(13);
-	a = "Now I have a surprise for U";
-	for (int i = 0; i < a.size(); i++)
-	{
-		cout << a[i];
-		Sleep(200);
-	}
-	clrscr();
-	Sleep(2000);
-	////////////////////////////
-	/*gotoxy(WindowWidth / 3, WindowHeight / 2 + 1);
-	cout << "Let count on 10 seconds";
-	Sleep(2000);*/
+	stuff = "Now I have a surprise for U";
+	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2 + 1 , 13, 250 , 1500);
 
-	/////////////////////////
+	clrscr();
+	
 }
-void Author2()
+
+
+void Author2(int width , int height , int color , int timeMotion)
 {
 	clrscr();
-	textcolor(11);
-	int x = WindowWidth / 4 + 10, y = WindowHeight/2 - 5 ;
+	textcolor(color);
+	int x = width, y = height ;
+	string stuff = "";
 	gotoxy(x  - 15 , y + 3 );
 	cout << " " << ch << " ";
 
-	gotoxy(x, y);
-	cout << "   nani ???   ";
-	Sleep(2000);
-	gotoxy(x, y + 1);
-	cout << "Why I am here ?";
-	Sleep(2000);
+	
+	stuff =  "   nani ???   ";
+	Print_String_First(stuff, x, y, color, 0, 2000);
+	stuff =  "Why I am here ?";
+	Print_String_First(stuff, x, y+1, color, 0, 2000);
+
 	for (int i = y; i < y + 2; i++)
 	{
 		gotoxy(x, y);
 		cout << "               ";
 	}
-	gotoxy(x, y);
-	cout << " Wrong time to show up again ! ";
-	Sleep(1000);
-	gotoxy(x - 2, y + 1);
-	cout << "I'm getting out of here ";
+	stuff =  " Wrong time to show up again ! ";
+	Print_String_First(stuff, x, y , color, 0, 1000);
+	stuff = "I'm getting out of here ";
+	Print_String_First(stuff, x - 2 , y + 1 , color, 0, 1000);
 	// xoa toa do dau` tien .
 	gotoxy(x - 15, y + 3);
 	cout << "   ";
@@ -1386,7 +1286,7 @@ void Author2()
 		gotoxy(a,b);
 		cout << " " << ch << " ";
 		a++;
-		Sleep(100);
+		Sleep(timeMotion);
 	}
 	while (b < 25)
 	{
@@ -1403,43 +1303,35 @@ void Author2()
 		gotoxy(a, b);
 		cout << " " << ch << " ";
 		a++;
-		Sleep(50);
+		Sleep(timeMotion - 50);
 	}
 
 	clrscr();
 
-	gotoxy(x, y);
-	cout << " Dy Dy will be back ";
-	Sleep(1500);
+	
+	stuff =  " Dy Dy will be back ";
+	Print_String_First(stuff, x, y, color, 0, 1500);
 }
 void ShowString_second()
 {
-	
 	clrscr();
+	string a = "";
+	string stuff = "";
 	int y = WindowHeight / 2;
-	gotoxy(WindowWidth / 4 + 15 , y );
-	textcolor(13);
-	string a = "Be ready ! Close your eyes in 3 seconds";
-	for (int i = 0; i < a.size(); i++)
-	{
-		cout << a[i];
-		Sleep(100);
-	}
-	Sleep(3000);
-	clrscr();
-	
-	ShowCursor(false);
-	////////////////
+	int x = WindowWidth / 4 + 15;
 
-	//////////////////////
-	// gotoxy(30, 15);
+	textcolor(13);
+
+	a = "Be ready ! Close your eyes in 3 seconds";
+	Print_String_First(a, x, y, 13, 100, 1000);
+
 	textcolor(14);
-	a = "Now open";
+	stuff = "Now open";
 	int temp = WindowWidth;
-	while (temp > WindowWidth / 4 + 25)
+	while (temp > WindowWidth  - a.size() - x )
 	{
 		gotoxy(temp, y);
-		cout << a;
+		cout << stuff;
 		Sleep(75);
 		gotoxy(temp, y);
 		cout << "          ";
@@ -1461,24 +1353,23 @@ int main()
 	
 	while(!_kbhit()){}
 	_getch();
-	 ShowString_frist();
+	/*
+	ShowString_frist("June 28 , 2021", "Hi Quynh Anh , the girl with cuteness and her beautiful name");
 	
-	Show_Run();
+	Show_Run("Welcome to the show !!!" , 15 , 100);
+
+	ShowNumber();
+
+	Author2(WindowWidth / 4 + 10 , WindowHeight / 2 - 5 , 11 , 100);
+
+	*/
+			
+	ShowString_second(); 
 		
-		ShowNumber2();
-		ShowNumber1();
-		Author2();
-		ShowString_second(); 
-		
-		
-	
-		 
-	
 	ShowStar();
-	
-	//Show_Run2();
-	
-	textcolor(7);
+
+
+
 	cout << endl;
 	system("pause");
 	return 0;
