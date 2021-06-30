@@ -7,7 +7,7 @@ using namespace std;
 int WindowWidth = 120;
 int WindowHeight = 40;
 char ch = char(3);
-void Print_String_First(string stuff, int width, int height, int color, int timeMotion , int timeSleep );
+void Print_String(string stuff, int width, int height, int color, int timeMotion , int timeSleep );
 char six[9][15] = {
 		"666666666666",
 		"66          ",
@@ -175,7 +175,7 @@ void gotoxy(int x, int y)
 void Show_Small_Start(char SmallStar1[15][30], int a, int b); 
 void Show_Big_Star(char BigStar[37][48], int x, int y);
 void Print_Multi_Character(char ch);
-void Print_String_First(string stuff, int width, int height, int color, int timeMotion = 0, int timeSleep = 0);
+void Print_String(string stuff, int width, int height, int color, int timeMotion = 0, int timeSleep = 0);
 
 
 // Flow
@@ -183,10 +183,10 @@ void Print_String_First(string stuff, int width, int height, int color, int time
 void ShowString_frist(string date, string content);
 void Author(int sizeContent, int width, int height, int color, int timeMotion);
 //
-void Show_Run(string tiltle, int colorTitle, int timeMotion);
+void TheShow(string tiltle, int colorTitle, int timeMotion);
 //
 void ShowNumber();
-void ShowNumberConfig(char number[9][15], int width, int height, int color, int timeMotion);
+void Print_Number(char number[9][15], int width, int height, int color, int timeMotion);
 //
 void Author2(int width, int height, int color, int timeMotion);
 void ShowString_second();
@@ -199,7 +199,7 @@ void End();
 
 
 // Define 
-void Show_Run(string tiltle, int colorTitle, int timeMotion) {
+void TheShow(string tiltle, int colorTitle, int timeMotion) {
 	int a = WindowWidth / 4 - 10, b = 0;
 	int t;
 	textcolor(colorTitle);
@@ -248,35 +248,35 @@ void ShowString_frist(string date, string content)
 	string rightMusic = "InLove.wav";
 	string stuff = "";
 	/////////////////////
-	Print_String_First(date, WindowWidth / 3, WindowHeight / 2, 13, 100, 0);
+	Print_String(date, WindowWidth / 3, WindowHeight / 2, 13, 100, 0);
 
-	Print_String_First(content, WindowWidth / 3 - 15, WindowHeight / 2 + 1, 13, 100, 0);
+	Print_String(content, WindowWidth / 3 - 15, WindowHeight / 2 + 1, 13, 100, 0);
 
 	Author(content.size(), WindowWidth / 3 - 5, WindowHeight / 2 - 5, 11, 75);
 	clrscr();
 	Sleep(1000);
 	////////////////////////////
 	stuff = "Let music begin";
-	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2, 13, 0, 2000);
+	Print_String(stuff, WindowWidth / 3, WindowHeight / 2, 13, 0, 2000);
 
 	PlaySound(wrongMusic.c_str(), NULL, SND_ASYNC);
 	clrscr();
 
 	stuff = "Not Mario . Wrong sound , My fauft!";
-	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2, 10, 0, 500);
+	Print_String(stuff, WindowWidth / 3, WindowHeight / 2, 10, 0, 500);
 	/////////////////////////////
 	stuff = " Now try again ! ";
-	Print_String_First(stuff, WindowWidth / 3 + 5, WindowHeight / 2 + 1, 14, 300, 1500);
+	Print_String(stuff, WindowWidth / 3 + 5, WindowHeight / 2 + 1, 14, 300, 1500);
 
 	PlaySound(rightMusic.c_str(), NULL, SND_ASYNC);
 
 	//////////////////////////////
 	clrscr();
 	stuff = "Perfect!";
-	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2 + 1, 10, 0, 2000);
+	Print_String(stuff, WindowWidth / 3, WindowHeight / 2 + 1, 10, 0, 2000);
 	///////////////////////
 	stuff = "Now I have a surprise for U";
-	Print_String_First(stuff, WindowWidth / 3, WindowHeight / 2 + 1, 13, 250, 1500);
+	Print_String(stuff, WindowWidth / 3, WindowHeight / 2 + 1, 13, 250, 1500);
 
 	clrscr();
 
@@ -335,7 +335,7 @@ void Author(int sizeContent, int width, int height, int color, int timeMotion)
 
 }
 
-void ShowNumberConfig(char number[9][15], int width, int height, int color, int timeMotion) {
+void Print_Number(char number[9][15], int width, int height, int color, int timeMotion) {
 	textcolor(color);
 	int y = WindowHeight / 2;
 	int x = width + 5;
@@ -379,15 +379,15 @@ void ShowNumber()
 		t = rand() % 15 + 1;
 		switch (count)
 		{
-		case 0: ShowNumberConfig(nine, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 1: ShowNumberConfig(eight, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 2: ShowNumberConfig(seven, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 3: ShowNumberConfig(six, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 4: ShowNumberConfig(five, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 5: ShowNumberConfig(four, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 6: ShowNumberConfig(three, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 7: ShowNumberConfig(two, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
-		case 8: ShowNumberConfig(one, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 0: Print_Number(nine, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 1: Print_Number(eight, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 2: Print_Number(seven, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 3: Print_Number(six, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 4: Print_Number(five, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 5: Print_Number(four, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 6: Print_Number(three, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 7: Print_Number(two, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
+		case 8: Print_Number(one, WindowWidth / 3 + 5, WindowHeight / 2, t, 1700); break;
 		default:
 			break;
 		}
@@ -410,9 +410,9 @@ void Author2(int width, int height, int color, int timeMotion)
 
 
 	stuff = "   nani ???   ";
-	Print_String_First(stuff, x, y, color, 0, 2000);
+	Print_String(stuff, x, y, color, 0, 2000);
 	stuff = "Why I am here ?";
-	Print_String_First(stuff, x, y + 1, color, 0, 2000);
+	Print_String(stuff, x, y + 1, color, 0, 2000);
 
 	for (int i = y; i < y + 2; i++)
 	{
@@ -420,9 +420,9 @@ void Author2(int width, int height, int color, int timeMotion)
 		cout << "               ";
 	}
 	stuff = " Wrong time to show up again ! ";
-	Print_String_First(stuff, x, y, color, 0, 1000);
+	Print_String(stuff, x, y, color, 0, 1000);
 	stuff = "I'm getting out of here ";
-	Print_String_First(stuff, x - 2, y + 1, color, 0, 1000);
+	Print_String(stuff, x - 2, y + 1, color, 0, 1000);
 	// xoa toa do dau` tien .
 	gotoxy(x - 15, y + 3);
 	cout << "   ";
@@ -457,7 +457,7 @@ void Author2(int width, int height, int color, int timeMotion)
 
 
 	stuff = " Dy Dy will be back ";
-	Print_String_First(stuff, x, y, color, 0, 1500);
+	Print_String(stuff, x, y, color, 0, 1500);
 }
 void ShowString_second()
 {
@@ -470,7 +470,7 @@ void ShowString_second()
 	textcolor(13);
 
 	a = "Be ready ! Close your eyes in 3 seconds";
-	Print_String_First(a, x, y, 13, 100, 1000);
+	Print_String(a, x, y, 13, 100, 1000);
 
 	textcolor(14);
 	stuff = "Now open";
@@ -587,11 +587,11 @@ void Show_Quote() {
 	
 		a = WindowWidth / 3-10; b = 4; // reset gia tri a , b 
 		string temp = "Suddenly the big star has come and warm the sky";
-		Print_String_First(temp , a , b , 10 , 75 , 0 );
+		Print_String(temp , a , b , 10 , 75 , 0 );
 		
 		a = WindowWidth / 3  - 10;
 		temp = " JustLike U come and drag me from the darkness ";
-		Print_String_First(temp, a, b + 1, 10, 75, 1000);
+		Print_String(temp, a, b + 1, 10, 75, 1000);
 
 		Print_Map(max_x, max_y);
 
@@ -607,17 +607,17 @@ void ShowString_third() {
 	clrscr();
 
 	string a = "There are many stars in the sky";
-	Print_String_First(a, WindowWidth / 3, WindowHeight / 2, 13, 200, 0);
+	Print_String(a, WindowWidth / 3, WindowHeight / 2, 13, 200, 0);
 
 	a = "But they left me alone";
-	Print_String_First(a, WindowWidth / 3 + 3, WindowHeight / 2 + 1, 15, 200, 2000);
+	Print_String(a, WindowWidth / 3 + 3, WindowHeight / 2 + 1, 15, 200, 2000);
 
 
 	clrscr();
 
 
 	a = "Now I feel empty and cold ";
-	Print_String_First(a, WindowWidth / 3 + 3, WindowHeight / 2, 12, 100, 2000);
+	Print_String(a, WindowWidth / 3 + 3, WindowHeight / 2, 12, 100, 2000);
 }
 void ShowStar()
 {
@@ -703,7 +703,7 @@ void ShowStar()
 	End();
 	_getch();
 	while (!_kbhit()) {
-		Show_Run("this is end ! but music does not end ^^", 15, 100);
+		TheShow("this is end ! but music does not end ^^", 15, 100);
 	}
 	
 
@@ -725,7 +725,8 @@ void End() {
 ">>>>>>>>>>>>>>>> *yeu* >>>>>>>>>>>>>>>> Thanks for watching" };
 	int x = WindowWidth / 3;
 	int y = WindowHeight / 3;
-	int z = y -1 ;
+	int z = y  ;
+	int temp = z;
 	for (int i = 0; i < 12; i++) {
 		gotoxy(x, y);
 		int t = rand() % 15 + 1;
@@ -737,9 +738,41 @@ void End() {
 
 	}
 	int len = 12;
+	int countt = 0;
 	x = WindowWidth / 3;
 
 	textcolor(10);
+
+		
+		
+		while (z > -12 )
+		{
+			temp = z;
+			if (z <= 0) {
+				countt++;
+				temp = 1;
+			}
+			
+			for (int i = 0; i < 12; i++) {
+				gotoxy(x, z);
+
+				cout << "                                                                                                    "; // BAO NHIU KÍ TỰ THÌ BẤY NHIÊU KHOẢNG CÁCH .
+				z++;
+			}
+			
+			for (int i = countt; i < 12; i++) {
+				gotoxy(x, temp -1);
+				
+				cout << string[i] << endl;
+				temp++;
+			}
+			z = z - 13;
+			Sleep(200);
+			
+		
+		}
+
+	/*
 	int countt = 0;
 	int i = 0;
 	while (countt < 12) {
@@ -761,7 +794,7 @@ void End() {
 		
 		z = z - 13;
 		Sleep(1000);
-	}
+	}*/
 
 	/*int countt = 0;
 	int conditionn = 0;
@@ -868,7 +901,7 @@ void Print_Map(int max_x, int max_y) {
 	}
 
 }
-void Print_String_First(string stuff, int width, int height, int color, int timeMotion , int timeSleep) {
+void Print_String(string stuff, int width, int height, int color, int timeMotion , int timeSleep) {
 	gotoxy(width, height);
 	textcolor(color);
 	for (int i = 0; i < stuff.size(); i++)
@@ -887,15 +920,15 @@ int main()
 {
 	while(!_kbhit()){}
 	_getch();
-	/*
+	
 	ShowString_frist("June 28 , 2021", "Hi Quynh Anh , the girl with cuteness and her beautiful name");
-	Show_Run("Welcome to the show !!!" , 15 , 100);
+	TheShow("Welcome to the show !!!" , 15 , 100);
 	ShowNumber();
 	Author2(WindowWidth / 4 + 10 , WindowHeight / 2 - 5 , 11 , 100);
 	ShowString_second();
 	ShowStar();
-	*/
-	End();
+	
+//	End();
 
 	cout << endl;
 	system("pause");
